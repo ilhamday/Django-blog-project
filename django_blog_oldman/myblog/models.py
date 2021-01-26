@@ -28,8 +28,8 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-    # used if user click Read More button
-    def get_absolute_url(self):
-        return reverse('blog', kwargs={
-            'blog_id': self.id
-        })
+    # used if user click Read More button | nb: using another method
+    # def get_absolute_url(self):
+    #     return reverse('blog', kwargs={
+    #         'blog_id': self.id
+    #     })
