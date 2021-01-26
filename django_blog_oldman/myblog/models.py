@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.urls import reverse
+from tinymce import HTMLField
 
 User = get_user_model()
 
@@ -22,6 +23,7 @@ class Post(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     thumbnail = models.ImageField(null=True, blank=True)
     featured = models.BooleanField()
+    content = HTMLField()
 
     def __str__(self):
         return self.title
