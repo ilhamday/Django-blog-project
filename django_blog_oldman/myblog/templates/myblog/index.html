@@ -35,6 +35,11 @@
         <!-- Pagination -->
         <ul class="pagination justify-content-center mb-4">
           {% if queryset.has_previous %}
+          <!-- has_previous etc is from django.
+            http://127.0.0.1:8000/?page=1 is the result of bellow href
+            --
+            why using '?' it's for query string -> https://stackoverflow.com/questions/33041449/what-is-the-meaning-of-question-mark-in-url-string 
+          -->
           <li class="page-item">
             <a class="page-link" href="?{{ page_request_var }}={{ queryset.previous_page_number }}">&larr; Older</a>
           </li>
