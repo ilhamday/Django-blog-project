@@ -13,6 +13,12 @@ class Author(models.Model):
 
     def __str__(self):
         return self.user.username
+        
+class Category(models.Model):
+    title = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.title
 
 class Post(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
@@ -25,6 +31,8 @@ class Post(models.Model):
     featured = models.BooleanField()
     content = HTMLField()
 
+    categories = models.ManyToManyField(Category)
+
     def __str__(self):
         return self.title
 
@@ -33,3 +41,4 @@ class Post(models.Model):
     #     return reverse('blog', kwargs={
     #         'blog_id': self.id
     #     })
+
