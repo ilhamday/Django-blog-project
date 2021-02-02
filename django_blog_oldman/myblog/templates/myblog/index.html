@@ -60,11 +60,13 @@
         <div class="card my-4">
           <h5 class="card-header">Search</h5>
           <div class="card-body">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for...">
-              <span class="input-group-append">
-                <button class="btn btn-secondary" type="button">Go!</button>
-              </span>
+            <div class="widget search">
+              <form action="{% url 'search' %}" class="search-form">
+                <div class="form-group">
+                  <input type="text" name="q" placeholder="Search here">
+                  <button type="submit" class="submit btn btn-secondary">Search</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>

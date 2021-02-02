@@ -2,6 +2,23 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import *
 from .forms import CommentForm
+from django.db.models import Q
+
+def search(request):
+    queryset = Post.objects.all()
+    query = request.GET.get('q')
+    if query:
+        queryset = queryset.filter(
+            Q(title__icontains = query)| # find with given query
+            Q(description__icontains = query)
+        ).distinct()
+    
+    context = {
+        'queryset':queryset, 
+    }
+
+    return render(request, 'search_results.html', context)
+
 
 def index(request):
     queryset = Post.objects.all()
