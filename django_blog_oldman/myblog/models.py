@@ -36,9 +36,15 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-    # used if user click Read More button | nb: using another method
-    # def get_absolute_url(self):
-    #     return reverse('blog', kwargs={
-    #         'blog_id': self.id
-    #     })
+    @property
+    def get_comments(self):
+        return self.comments.all().order_by('-date')
 
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
+    content = models.TextField()
+    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE) #Class Post
+
+    def __str__(self):
+        return self.user.username

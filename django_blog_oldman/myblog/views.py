@@ -1,7 +1,7 @@
-from django.shortcuts import render, get_object_or_404
-from .models import *
+from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from .models import *
+from .forms import CommentForm
 
 def index(request):
     queryset = Post.objects.all()
@@ -28,8 +28,19 @@ def index(request):
 
 def blog(request, post_id):
     blog = get_object_or_404(Post, pk=post_id)
+    form = CommentForm(request.POST or None)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.instance.user = request.user
+            form.instance.post = blog # match the blog post, see above variable
+            form.save()
+
+            return redirect('blog_detail', post_id=post_id)
+
     context = {
-        'blog': blog
+        'blog': blog,
+        'form': form,
     }
     return render(request, 'blog-detail.html', context)
     
