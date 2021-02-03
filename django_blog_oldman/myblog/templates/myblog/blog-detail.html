@@ -25,6 +25,8 @@
 
         <!-- Date/Time -->
         <p>Posted on {{ blog.date|timesince }} ago</p>
+        <a href="{% url 'blog_update' post_id=blog.id %}">Update</a>
+        <a href="{% url 'blog_delete' post_id=blog.id %}">Delete</a>
 
         <hr>
 
