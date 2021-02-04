@@ -3,6 +3,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import *
 from .forms import CommentForm, PostForm
 from django.db.models import Q
+from django.views.generic import CreateView
 
 def get_author(user):
     qs = Author.objects.filter(user=user)
@@ -126,3 +127,8 @@ def category_view(request, cats):
         'category_post': category_post
     }
     return render(request, 'categories.html', context)
+
+class AddCategoryView(CreateView):
+    model = Category
+    template_name = 'add-category.html'
+    fields = '__all__'

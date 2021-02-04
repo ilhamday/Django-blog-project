@@ -26,6 +26,7 @@ urlpatterns = [
     path('blog/<int:post_id>/', views.blog, name='blog_detail'),
     path('blog/<int:post_id>/update', views.blog_update, name='blog_update'),
     path('blog/<int:post_id>/delete', views.blog_delete, name='blog_delete'),
+    path('add-category/', views.AddCategoryView.as_view(), name='add_category'),
     path('category/<str:cats>/', views.category_view, name='category'),
     path('search/', views.search, name='search'),
     path('tinymce/', include('tinymce.urls')),
