@@ -30,6 +30,7 @@ urlpatterns = [
     path('category/<str:cats>/', views.category_view, name='category'),
     path('search/', views.search, name='search'),
     path('tinymce/', include('tinymce.urls')),
+    path('accounts/', include('allauth.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
